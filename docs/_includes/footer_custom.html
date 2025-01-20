@@ -20,14 +20,14 @@
 
 {% if previous_page or next_page %}
 <p style="padding-bottom: 3em">
-    {% if previous_page %}
+    {% if previous_page and previous_page.path != "" %}
     <span class="prev float-left">
         ←
         <a href="{% link {{ previous_page.path }} %}">{{ previous_page.title }}</a>
     </span>
     {% endif %} 
 
-    {% if next_page %}
+    {% if next_page and next_page.path != "" %}
     <span class="next float-right">
         <a href="{% link {{ next_page.path }} %}">{{ next_page.title }}</a>
         →
