@@ -18,6 +18,9 @@ previous_page:      previous page in nav order (or parent, if it is the first pa
 
 {%- endcomment -%}
 
+
+{% if page != nil %}
+
 {%- comment -%}
 === top_pages ===
 {%- endcomment -%}
@@ -151,4 +154,6 @@ previous_page:      previous page in nav order (or parent, if it is the first pa
         {% assign int_parent_successor = int_parent_idx|plus:1  %}
         {% assign next_page = top_pages[int_parent_successor] %}
     {% endif %}
+{% endif %}
+
 {% endif %}
