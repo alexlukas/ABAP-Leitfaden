@@ -26,7 +26,8 @@ previous_page:      previous page in nav order (or parent, if it is the first pa
 {%- endcomment -%}
 
 {% assign top_pages = site.pages
-| where_exp: "item", "item.title != nil and item.parent == nil"
+  | where_exp: "item", "item.title != nil"
+  | where_exp: "item", "item.parent == nil"
 | sort: "nav_order"
 %}
 
@@ -50,7 +51,8 @@ previous_page:      previous page in nav order (or parent, if it is the first pa
 
 {% for top_page in top_pages %}
     {% assign int_curr_children = site.pages
-    | where_exp: "item", "item.title != nil and item.parent == top_page.title"
+      | where_exp: "item", "item.title != nil"
+      | where_exp: "item", "item.parent == top_page.title"
     | sort: "nav_order" %}
 
     {% assign top_child_pages = top_child_pages | push: int_curr_children %}
@@ -63,7 +65,8 @@ previous_page:      previous page in nav order (or parent, if it is the first pa
 
 {% if is_top_page == 1 %}
     {% assign int_children_of_this_page = site.pages
-        | where_exp: "item", "item.title != nil and item.parent == page.title"
+      | where_exp: "item", "item.title != nil"
+      | where_exp: "item", "item.parent == page.title"
         | sort: "nav_order" %}
     {% assign first_child = int_children_of_this_page | first %}
 {% endif %}
